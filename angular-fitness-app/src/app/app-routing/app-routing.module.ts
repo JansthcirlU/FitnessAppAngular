@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { PlansComponent } from '../plans/plans.component';
-import { EquipmentComponent } from '../equipment/equipment.component';
+import { WorkoutPlanOverviewComponent } from '../workout-plans/workout-plan-overview/workout-plan-overview.component';
+import { EquipmentOverviewComponent } from '../equipment/equipment-overview/equipment-overview.component';
 
 const routes: Routes = [
-  { path: 'plans', component: PlansComponent },
-  { path: 'equipment', component: EquipmentComponent }
+  { path: 'plans', component: WorkoutPlanOverviewComponent },
+  { path: 'equipment', component: EquipmentOverviewComponent }
 ]
 
 @NgModule({

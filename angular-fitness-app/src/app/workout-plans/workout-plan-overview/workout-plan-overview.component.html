@@ -1,0 +1,7 @@
+<h2>My Workout Plans</h2>
+
+<div class="plans-overview">
+    <div *ngFor="let p of plans">
+        <app-workout-plan-summary [plan]="p"></app-workout-plan-summary>
+    </div>
+</div>
