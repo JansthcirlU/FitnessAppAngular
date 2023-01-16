@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SubscribableTitleService } from 'src/services/subscribable-title/subscribable-title.service';
 
 @Component({
   selector: 'app-exercise-overview',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./exercise-overview.component.css']
 })
 export class ExerciseOverviewComponent {
-
+  constructor(private titleService: SubscribableTitleService) {
+    this.titleService.setTitle("Exercises");
+  }
 }

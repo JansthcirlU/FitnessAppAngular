@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { WorkoutPlan } from 'src/models/plans/workout-plan';
+import { WorkoutPlanSummary } from 'src/models/plans/workout-plan-summary';
 
 @Component({
   selector: 'app-workout-plan-summary',
@@ -7,7 +7,7 @@ import { WorkoutPlan } from 'src/models/plans/workout-plan';
   styleUrls: ['./workout-plan-summary.component.css']
 })
 export class WorkoutPlanSummaryComponent implements OnInit {
-  @Input() plan?: WorkoutPlan;
+  @Input() planSummary?: WorkoutPlanSummary;
   
   ngOnInit(): void {
     // throw new Error('Method not implemented.');

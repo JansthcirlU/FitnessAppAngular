@@ -1,1 +1,11 @@
-<p>workout-plan-summary works!</p>
+<div class="summary" *ngIf="planSummary">
+    <div class="summary-name">{{planSummary.name}}</div>
+    <ul>
+        <li *ngFor="let stepSummary of planSummary.stepSummaries">
+            <!-- separate fields for styling -->
+            <div class="summary-step-number">{{stepSummary.step}}</div>
+            <div class="summary-step-exercise">{{stepSummary.exercise}}</div>
+            <div class="summary-step-summary">{{stepSummary.summary}}</div>
+        </li>
+    </ul>
+</div>

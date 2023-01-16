@@ -1,7 +1,7 @@
-<h2>My Workout Plans</h2>
-
-<div class="plans-overview">
-    <div *ngFor="let p of plans">
-        <app-workout-plan-summary [plan]="p"></app-workout-plan-summary>
+<div class="workout-plans-overview">
+    <!-- make this scroll horizontally -->
+    <div class="summary-container" *ngFor="let p of planSummaries">
+        <app-workout-plan-summary [planSummary]="p"></app-workout-plan-summary>
     </div>
+    <input class="create-workout-plan" type="button" value="+" title="Create Workout Plan">
 </div>

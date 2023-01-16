@@ -1,6 +1,4 @@
-import { TimeSpan } from "../common/timespan"
-
-export interface RoutineSet {
+export interface WorkoutPlanStepRoutineSet {
     sets: number,
     reps: number,
     restTime: string; // TimeSpan breaking change since .NET 6

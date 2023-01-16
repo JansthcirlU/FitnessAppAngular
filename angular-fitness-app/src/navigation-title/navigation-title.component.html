@@ -1,0 +1,10 @@
+<!-- Create title bar component and add notifications/settings buttons to it -->
+<h2 class="navigation-app-title">{{appName}}<span class="navigation-app-subtitle" *ngIf="title"> | {{title}}</span></h2>
+
+<div class="nav-container">
+    <a [routerLink]="['home']">Home</a>
+    <a [routerLink]="['plans']">My Workout Plans</a>
+    <a [routerLink]="['equipment']">My Equipment</a>
+    <a [routerLink]="['exercises']">Exercises</a>
+</div>
+<router-outlet></router-outlet>

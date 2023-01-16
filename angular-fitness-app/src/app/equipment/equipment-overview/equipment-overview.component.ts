@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Equipment } from 'src/models/equipment/equipment-base';
-import { EquipmentService } from 'src/services/equipment.service';
+import { EquipmentService } from 'src/services/equipment/equipment.service';
+import { SubscribableTitleService } from 'src/services/subscribable-title/subscribable-title.service';
 
 @Component({
   selector: 'app-equipment-overview',
@@ -9,13 +10,17 @@ import { EquipmentService } from 'src/services/equipment.service';
 })
 export class EquipmentOverviewComponent implements OnInit {
   // TODO: populate this from service
-  equipments: Equipment[] = [];
+  equipmentSummaries: string[] = [];
 
-  constructor(public equipmentService: EquipmentService) {
-
+  constructor(
+    private equipmentService: EquipmentService,
+    private titleService: SubscribableTitleService) {
+    this.titleService.setTitle("My Equipment"); 
   }
 
   ngOnInit(): void {
-    // throw new Error('Method not implemented.');
+    this.equipmentService
+      .getEquipmentSummaries()
+      .subscribe(summaries => this.equipmentSummaries = summaries)
   }
 }

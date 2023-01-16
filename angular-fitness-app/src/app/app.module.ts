@@ -7,12 +7,14 @@ import { ShortenPipe } from './pipes/shorten';
 import { EquipmentModule } from './equipment/equipment.module';
 import { ExercisesModule } from './exercises/exercises.module';
 import { WorkoutPlansModule } from './workout-plans/workout-plans.module';
+import { NavigationTitleComponent } from '../navigation-title/navigation-title.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ShortenPipe,
+    NavigationTitleComponent,
   ],
   imports: [
     BrowserModule,
@@ -24,4 +26,5 @@ import { WorkoutPlansModule } from './workout-plans/workout-plans.module';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

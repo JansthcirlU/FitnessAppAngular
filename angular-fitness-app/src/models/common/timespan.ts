@@ -1,3 +1,7 @@
+/**
+ * Interface with all the properties inside a .NET TimeSpan.
+ * @deprecated .NET TimeSpan now gets serialised as a simple time string
+ */
 export interface TimeSpan {
     Ticks: number,
     Days: number,
