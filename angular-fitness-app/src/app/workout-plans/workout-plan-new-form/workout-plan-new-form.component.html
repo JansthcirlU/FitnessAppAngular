@@ -1,0 +1,51 @@
+<h2 mat-dialog-title>Create Workout Plan</h2>
+<mat-dialog-content>
+    <form class="new-plan-form" [formGroup]="planForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline" color="accent">
+            <mat-label>Name</mat-label>
+            <input matInput id="form-plan-name" type="text" placeholder="Name" formControlName="name" />
+            <mat-error *ngIf="name.errors?.['required']">Name is required.</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" color="accent">
+            <mat-label>Description</mat-label>
+            <input matInput id="form-plan-description" type="text" placeholder="Description" formControlName="description" />
+            <mat-error *ngIf="description.errors?.['required']">Description is required.</mat-error>
+        </mat-form-field>
+    
+        <div *ngIf="steps">
+            <button mat-raised-button type="button" color="accent" (click)="addStep()">Add new step</button>
+            <ol formArrayName="steps">
+                <li *ngFor="let step of steps.controls; index as i">
+                    <div [formGroupName]="i">
+                        <mat-form-field appearance="outline" color="accent">
+                            <mat-label for="step-exercise">Exercise: </mat-label>
+                            <mat-select name="step-exercises" id="step-exercise" formControlName="exerciseId">
+                                <mat-option *ngFor="let exercise of exercises" [value]="exercise.id">{{exercise.name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+    
+                        <mat-form-field appearance="outline" color="accent">
+                            <mat-label for="step-sets">Sets: </mat-label>
+                            <input matInput id="step-sets" type="number" formControlName="sets" />
+                        </mat-form-field>
+    
+                        <mat-form-field appearance="outline" color="accent">
+                            <mat-label for="step-reps">Reps: </mat-label>
+                            <input matInput id="step-reps" type="number" formControlName="reps" />
+                        </mat-form-field>
+    
+                        <mat-form-field appearance="outline" color="accent">
+                            <mat-label for="step-rest">Rest time (sec): </mat-label>
+                            <input matInput id="step-rest" type="number" formControlName="restTime" />
+                        </mat-form-field>
+                    </div>
+                </li>
+            </ol>
+        </div>
+        <button mat-raised-button color="accent" type="submit" [disabled]="!planForm.valid">Save Workout Plan</button>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <!-- <button>Submit</button> -->
+</mat-dialog-actions>

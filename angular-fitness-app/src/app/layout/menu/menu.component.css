@@ -1,0 +1,19 @@
+.menu-button {
+    width: 100%;
+}
+
+.menu-button-content {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    font-size: xx-large;
+}
+
+.collapsed {
+    display: none;
+}
+
+.menu-button-text {
+    flex-grow: 1;
+    justify-self: center;
+}

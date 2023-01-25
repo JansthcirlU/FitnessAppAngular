@@ -1,0 +1,23 @@
+.grid-container {
+    min-height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: 
+    'sd hd'
+    'sd bd';
+    position: relative;
+}
+
+.header-stuff {
+    grid-area: hd;
+}
+
+.side-bar {
+    grid-area: sd;
+}
+
+.page-body {
+    grid-area: bd;
+}

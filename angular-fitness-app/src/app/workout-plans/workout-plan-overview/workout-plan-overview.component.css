@@ -1,0 +1,22 @@
+/* @media only screen and (max-width: 600px) {
+    .workout-plans-overview {
+        display: flex;
+        flex-direction: row;
+    }
+} */
+
+.workout-plans-overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 10px;
+}
+
+.button-container {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+}
+
+.new-plan-button {
+    font-size: larger;
+}

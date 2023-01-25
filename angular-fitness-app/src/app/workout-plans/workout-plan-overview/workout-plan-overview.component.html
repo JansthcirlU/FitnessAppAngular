@@ -1,7 +1,8 @@
 <div class="workout-plans-overview">
-    <!-- make this scroll horizontally -->
+    <div class="summary-container button-container">
+        <button mat-raised-button color="accent" class="new-plan-button" (click)="onCreateNew()">CREATE</button>
+    </div>
     <div class="summary-container" *ngFor="let p of planSummaries">
         <app-workout-plan-summary [planSummary]="p"></app-workout-plan-summary>
     </div>
-    <input class="create-workout-plan" type="button" value="+" title="Create Workout Plan">
 </div>

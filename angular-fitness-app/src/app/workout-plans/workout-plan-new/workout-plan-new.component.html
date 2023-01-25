@@ -1,1 +1,6 @@
-<p>workout-plan-new works!</p>
+<div *ngIf="isCreating">
+    <app-workout-plan-new-form></app-workout-plan-new-form>
+    <!-- use different method here (should still toggle isCreating) -->
+    <!-- <input class="save-workout-plan" type="button" value="Save Workout Plan" (click)="toggleCreating()"> -->
+</div>
+<input class="create-workout-plan" type="button" value="+" title="Create Workout Plan" (click)="toggleCreating()" [disabled]="isCreating">

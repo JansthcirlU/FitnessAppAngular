@@ -1,0 +1,13 @@
+.summary {
+    padding: 1rem;
+}
+
+.summary-steps {
+    overflow-y: scroll;
+}
+
+.summary-buttons-flex {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}

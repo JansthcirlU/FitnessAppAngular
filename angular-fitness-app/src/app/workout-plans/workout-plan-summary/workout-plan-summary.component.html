@@ -1,11 +1,33 @@
-<div class="summary" *ngIf="planSummary">
-    <div class="summary-name">{{planSummary.name}}</div>
-    <ul>
-        <li *ngFor="let stepSummary of planSummary.stepSummaries">
-            <!-- separate fields for styling -->
-            <div class="summary-step-number">{{stepSummary.step}}</div>
-            <div class="summary-step-exercise">{{stepSummary.exercise}}</div>
-            <div class="summary-step-summary">{{stepSummary.summary}}</div>
-        </li>
-    </ul>
-</div>
+<mat-card *ngIf="planSummary">
+    <mat-card-header>
+        <mat-card-subtitle>Workout Plan</mat-card-subtitle>
+        <mat-card-title>{{planSummary.name}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>Steps</mat-panel-title>
+                <mat-panel-description>{{planSummary.description}}</mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-list class="summary-steps">
+                <mat-list-item *ngFor="let stepSummary of planSummary.stepSummaries">
+                    <span matListItemTitle class="summary-step-exercise">{{stepSummary.step}}. {{stepSummary.exercise}}</span>
+                    <span matListItemLine class="summary-step-summary">{{stepSummary.summary}}</span>
+                </mat-list-item>
+            </mat-list>
+        </mat-expansion-panel>
+    </mat-card-content>
+    <mat-card-actions>
+        <div class="summary-buttons-flex">
+            <button mat-fab color="primary" aria-label="Icon button with a play arrow icon">
+                <mat-icon>play_arrow</mat-icon>
+            </button>
+            <button mat-fab color="primary" aria-label="Icon button with an edit icon">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-fab color="primary" aria-label="Icon button with a delete icon">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
+    </mat-card-actions>
+</mat-card>

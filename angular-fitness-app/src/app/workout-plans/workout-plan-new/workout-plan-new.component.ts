@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./workout-plan-new.component.css']
 })
 export class WorkoutPlanNewComponent {
+  isCreating: boolean = false;
 
+  toggleCreating(): void {
+    this.isCreating = !this.isCreating;
+  }
 }

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Equipment } from 'src/models/equipment/equipment-base';
-import { EquipmentService } from 'src/services/equipment/equipment.service';
-import { SubscribableTitleService } from 'src/services/subscribable-title/subscribable-title.service';
+import { EquipmentService } from '../services/equipment.service';
 
 @Component({
   selector: 'app-equipment-overview',
@@ -13,9 +11,7 @@ export class EquipmentOverviewComponent implements OnInit {
   equipmentSummaries: string[] = [];
 
   constructor(
-    private equipmentService: EquipmentService,
-    private titleService: SubscribableTitleService) {
-    this.titleService.setTitle("My Equipment"); 
+    private equipmentService: EquipmentService) {
   }
 
   ngOnInit(): void {

@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { ExerciseOverviewComponent } from './exercise-overview/exercise-overview.component';
 import { ExerciseDetailComponent } from './exercise-detail/exercise-detail.component';
 import { ExerciseSummaryComponent } from './exercise-summary/exercise-summary.component';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { ExerciseDataService } from 'src/mock-data/exercise/exercise-data.service';
 import { HttpClientModule } from '@angular/common/http';
+import { MockDataModule } from '../mock-data/mock-data.module';
+import { ExercisesRoutingModule } from './exercises-routing/exercises-routing.module';
 
 
 
@@ -13,14 +13,13 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     ExerciseOverviewComponent,
     ExerciseDetailComponent,
-    ExerciseSummaryComponent
+    ExerciseSummaryComponent,
   ],
   imports: [
     CommonModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(
-      ExerciseDataService, { dataEncapsulation: false }
-    )
+    MockDataModule,
+    ExercisesRoutingModule
   ]
 })
 export class ExercisesModule { }

@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { EquipmentOverviewComponent } from './equipment-overview/equipment-overview.component';
 import { EquipmentDetailComponent } from './equipment-detail/equipment-detail.component';
 import { EquipmentSummaryComponent } from './equipment-summary/equipment-summary.component';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { EquipmentDataService } from 'src/mock-data/equipment/equipment-data.service';
 import { HttpClientModule } from '@angular/common/http';
+import { MockDataModule } from '../mock-data/mock-data.module';
+import { EquipmentOverviewComponent } from './equipment-overview/equipment-overview.component';
+import { EquipmentRoutingModule } from './equipment-routing/equipment-routing.module';
+import { EquipmentService } from './services/equipment.service';
 
 
 
@@ -13,14 +14,16 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     EquipmentOverviewComponent,
     EquipmentDetailComponent,
-    EquipmentSummaryComponent
+    EquipmentSummaryComponent,
   ],
   imports: [
+    EquipmentRoutingModule,
     CommonModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(
-      EquipmentDataService, { dataEncapsulation: false }
-    )
+    MockDataModule,
+  ],
+  providers: [
+    EquipmentService
   ]
 })
 export class EquipmentModule { }

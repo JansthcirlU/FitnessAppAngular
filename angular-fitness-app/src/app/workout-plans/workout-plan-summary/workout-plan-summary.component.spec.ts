@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { WorkoutPlanSummaryComponent } from './workout-plan-summary.component';
 
 describe('WorkoutPlanSummaryComponent', () => {

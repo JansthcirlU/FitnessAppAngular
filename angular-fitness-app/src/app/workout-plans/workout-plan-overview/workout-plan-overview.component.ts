@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { WorkoutPlanSummary } from 'src/models/plans/workout-plan-summary';
-import { SubscribableTitleService } from 'src/services/subscribable-title/subscribable-title.service';
-import { WorkoutPlanService } from 'src/services/workout-plans/workout-plan.service';
+import { WorkoutPlanNewFormComponent } from '../workout-plan-new-form/workout-plan-new-form.component';
+import { WorkoutPlanSummary } from 'src/app/models/plans/workout-plan-summary';
+import { WorkoutPlanService } from '../services/workout-plan.service';
+import { OverlayService } from 'src/app/shared/overlay/overlay.service';
+import { MatDialog } from '@angular/material/dialog';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-workout-plan-overview',
@@ -13,14 +16,24 @@ export class WorkoutPlanOverviewComponent implements OnInit {
   planSummaries: WorkoutPlanSummary[] = [];
 
   constructor(
+    public dialog: MatDialog,
     private workoutPlanService: WorkoutPlanService,
-    private titleService: SubscribableTitleService) {
-    this.titleService.setTitle("My Workout Plans");
+    private overlayService: OverlayService) {
   }
 
   ngOnInit(): void {
     this.workoutPlanService
       .getWorkoutPlanSummaries()
       .subscribe(summaries => this.planSummaries = summaries);
+  }
+
+  onCreateNew() {
+    // this.overlayService.show(WorkoutPlanNewFormComponent);
+    const dialogRef = this.dialog.open(WorkoutPlanNewFormComponent);
+    dialogRef
+      .afterClosed()
+      .pipe(
+        tap(result => { console.log(`Dialog result: ${result}`); })
+      ).subscribe();
   }
 }

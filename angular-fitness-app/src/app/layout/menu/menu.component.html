@@ -1,0 +1,8 @@
+<button class="menu-button" type="button" (click)="onToggleMenu()">
+    <div class="menu-button-content">
+        <span class="menu-button-icon">☰</span>
+        <span class="menu-button-text" [className]="collapsed ? 'collapsed' : 'menu-button-text'">MENU</span>
+    </div>
+</button>
+<app-navigation-bar [className]="collapsed ? 'collapsed' : ''"></app-navigation-bar>
+<app-settings [className]="collapsed ? 'collapsed' : ''"></app-settings>

@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { SubscribableTitleService } from 'src/services/subscribable-title/subscribable-title.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +6,6 @@ import { SubscribableTitleService } from 'src/services/subscribable-title/subscr
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  constructor(private titleService: SubscribableTitleService) {
-    this.titleService.setTitle("Home"); 
+  constructor() {
   }
 }

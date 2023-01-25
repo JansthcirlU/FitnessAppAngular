@@ -1,0 +1,17 @@
+.settings-container {
+    width: 100%;
+    position: relative;
+}
+
+.settings-button {
+    width: 100%;
+    align-self: center;
+}
+
+.settings-items {
+    min-width: 200px;
+    position: absolute;
+    z-index: 100;
+    left: 0;
+    padding: 0.33rem;
+}

@@ -1,0 +1,8 @@
+:host {
+    display: flex;
+    flex-direction: row;
+}
+
+.new-plan-btn {
+    align-self: center;
+}

@@ -1,0 +1,13 @@
+<app-overlay></app-overlay>
+<div class="grid-container">
+    <div class="header-stuff">
+        <app-navigation-title #title></app-navigation-title>
+    </div>
+    <div class="side-bar">
+        <app-menu></app-menu>
+    </div>
+    <div class="page-body">
+        <router-outlet (activate)="title.onRouteActivated()"></router-outlet>
+    </div>
+</div>
+<app-notifications></app-notifications>

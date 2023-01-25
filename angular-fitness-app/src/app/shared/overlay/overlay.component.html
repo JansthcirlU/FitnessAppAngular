@@ -1,0 +1,10 @@
+<div class="overlay" [style.width.%]="percentage">
+    <button class="close-overlay-button"
+            type="button" 
+            (click)="closeOverlay()">
+            &times;
+    </button>
+    <div class="overlay-content">
+        <ng-template appDynamic></ng-template>
+    </div>
+</div>
