@@ -22,30 +22,38 @@
                             <mat-select name="step-exercises" id="step-exercise" formControlName="exerciseId">
                                 <mat-option *ngFor="let exercise of exercises" [value]="exercise.id">{{exercise.name}}</mat-option>
                             </mat-select>
+                            <mat-error *ngIf="getStepAt(i).exerciseId.errors?.['required']">Exercise is required.</mat-error>
                         </mat-form-field>
     
                         <mat-form-field appearance="outline" color="accent">
                             <mat-label for="step-sets">Sets: </mat-label>
                             <input matInput id="step-sets" type="number" formControlName="sets" />
+                            <mat-error *ngIf="getStepAt(i).sets.errors?.['required']">Number of sets is required.</mat-error>
+                            <mat-error *ngIf="getStepAt(i).sets.errors?.['min']">Number of sets must be at least {{setsMin}}.</mat-error>
                         </mat-form-field>
     
                         <mat-form-field appearance="outline" color="accent">
                             <mat-label for="step-reps">Reps: </mat-label>
                             <input matInput id="step-reps" type="number" formControlName="reps" />
+                            <mat-error *ngIf="getStepAt(i).reps.errors?.['required']">Number of reps per set is required.</mat-error>
+                            <mat-error *ngIf="getStepAt(i).reps.errors?.['min']">Number of reps per set must be at least {{repsMin}}.</mat-error>
                         </mat-form-field>
     
                         <mat-form-field appearance="outline" color="accent">
                             <mat-label for="step-rest">Rest time (sec): </mat-label>
                             <input matInput id="step-rest" type="number" formControlName="restTime" />
+                            <mat-error *ngIf="getStepAt(i).restTime.errors?.['required']">Rest time is required.</mat-error>
+                            <mat-error *ngIf="getStepAt(i).restTime.errors?.['min']">Rest time must be at least {{restMin}} second(s).</mat-error>
+                            <mat-error *ngIf="getStepAt(i).restTime.errors?.['max']">Rest time must be at most {{restMax}} second(s).</mat-error>
                         </mat-form-field>
                     </div>
                 </li>
             </ol>
         </div>
-        <button mat-raised-button color="accent" type="submit" [disabled]="!planForm.valid">Save Workout Plan</button>
+        <!-- <button mat-raised-button color="accent" type="submit" [disabled]="!planForm.valid">Save Workout Plan</button> -->
     </form>
 </mat-dialog-content>
 <mat-dialog-actions>
     <button mat-button mat-dialog-close>Cancel</button>
-    <!-- <button>Submit</button> -->
+    <button mat-button [disabled]="!planForm.valid">Create</button>
 </mat-dialog-actions>

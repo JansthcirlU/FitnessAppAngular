@@ -8,14 +8,6 @@ import { ExerciseService } from 'src/app/exercises/services/exercise.service';
 import { OverlayContentComponent } from 'src/app/shared/overlay/overlay-content.component';
 import { TimespanService } from 'src/tools/timespan.service';
 
-const setsDefault: number = 3;
-const setsMin: number = 1;
-const repsDefault: number = 12;
-const repsMin: number = 1;
-const restDefault: number = 15;
-const restMin: number = 1;
-const restMax: number = 720;
-
 @Component({
   selector: 'app-workout-plan-new-form',
   templateUrl: './workout-plan-new-form.component.html',
@@ -27,6 +19,14 @@ export class WorkoutPlanNewFormComponent implements OnInit, OverlayContentCompon
     description: ['', Validators.required],
     steps: this.builder.array([])
   });
+
+  setsDefault: number = 3;
+  setsMin: number = 1;
+  repsDefault: number = 12;
+  repsMin: number = 1;
+  restDefault: number = 15;
+  restMin: number = 1;
+  restMax: number = 720;
   
   get name() {
     return this.planForm.get('name') as FormControl;
@@ -35,7 +35,13 @@ export class WorkoutPlanNewFormComponent implements OnInit, OverlayContentCompon
     return this.planForm.get('description') as FormControl;
   }
   get steps() {
-    return this.planForm.get('steps') as FormArray;
+    const planFormArray = this.planForm.get('steps') as FormArray<FormGroup<{
+      exerciseId: FormControl<string | null>,
+      sets: FormControl<number | null>,
+      reps: FormControl<number | null>,
+      restTime: FormControl<number | null>
+    }>>;
+    return planFormArray;
   }
 
   get exerciseIds() {
@@ -67,31 +73,46 @@ export class WorkoutPlanNewFormComponent implements OnInit, OverlayContentCompon
     this.steps.push(this.addStepGroup());
   }
 
-  onSubmit(): void {
+  getStepAt(i: number): {
+    exerciseId: FormControl<string | null>;
+    sets: FormControl<number | null>;
+    reps: FormControl<number | null>;
+    restTime: FormControl<number | null>; } {
+    const stepGroup = this.steps.at(i) as FormGroup<{
+      exerciseId: FormControl<string | null>,
+      sets: FormControl<number | null>,
+      reps: FormControl<number | null>,
+      restTime: FormControl<number | null>
+    }>;
+    return stepGroup.controls;
+  }
+
+  onSubmit() {
     debugger;
     const plan: WorkoutPlan = this.buildWorkoutPlan();
-    console.log("Submitted form data for New Workout Plan:");
+    console.log("Built form data for New Workout Plan:");
     console.log(plan);
+    return plan;
   }
 
   private buildWorkoutPlan(): WorkoutPlan {
-    const name: string = this.name.value;
-    const description: string = this.description.value;
+    const name: string = this.name.value!;
+    const description: string = this.description.value!;
     const steps: WorkoutPlanStep[] = this.steps.controls.map((c, i) => {
       return {
         step: i,
         routine: {
-          exercise: this.exercises?.at(i),
+          exercise: this.exercises!.at(i),
           set: {
-            sets: c.get('sets')?.value,
-            reps: c.get('reps')?.value,
-            restTime: this.timespanService.secondsToTimeString(c.get('restTime')?.value)
+            sets: c.controls.sets.value!,
+            reps: c.controls.reps.value!,
+            restTime: this.timespanService.secondsToTimeString(c.controls.restTime.value!)
           }
         }
       } as WorkoutPlanStep
     });
     const plan: WorkoutPlan = {
-      id: crypto.randomUUID(), // Let back-end generate guid
+      id: crypto.randomUUID(), // TODO: Let back-end generate guid
       name: name,
       description: description,
       steps: steps
@@ -100,11 +121,16 @@ export class WorkoutPlanNewFormComponent implements OnInit, OverlayContentCompon
   }
 
   private addStepGroup() {
-    const stepGroup: FormGroup = this.builder.group({
+    const stepGroup: FormGroup<{
+      exerciseId: FormControl<string | null>,
+      sets: FormControl<number | null>,
+      reps: FormControl<number | null>,
+      restTime: FormControl<number | null>
+    }> = this.builder.group({
       exerciseId: ['', Validators.required],
-      sets: [setsDefault, [Validators.required, Validators.min(setsMin)]],
-      reps: [repsDefault, [Validators.required, Validators.min(repsMin)]],
-      restTime: [restDefault, [Validators.required, Validators.min(restMin), Validators.max(restMax)]]
+      sets: [this.setsDefault, [Validators.required, Validators.min(this.setsMin)]],
+      reps: [this.repsDefault, [Validators.required, Validators.min(this.repsMin)]],
+      restTime: [this.restDefault, [Validators.required, Validators.min(this.restMin), Validators.max(this.restMax)]]
     });
     return stepGroup;
   }
